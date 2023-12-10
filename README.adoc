@@ -6,6 +6,11 @@ This repository provides tools to generate symethoct testdata. It generates real
 
 Try out the invoice generator:
 
+It uses the following generators:
+* The prices and are randomly generated using GOÄ https://www.bundesgesundheitsministerium.de/service/begriffe-von-a-z/g/gebuehrenordnung-fuer-aerzte-und-zahnaerzte
+* The organizations are randomly generated using the statistics from VZD of TI
+* The patients are generated using the statistics from Wikimedia
+
 [source,bash]
 ----
 # Generate a random invoice as FHIR Bundle
