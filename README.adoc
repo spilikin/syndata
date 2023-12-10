@@ -1,4 +1,4 @@
-= 💡🎹 Syndata: Synthetic testdata for your e-health applications
+= 🎹 Syndata: Synthetic testdata for your e-health applications
 
 This repository provides tools to generate symethoct testdata. It generates realistic, but not real data based on algorithms and statistical distributions. The data is generated in a way that it can be used for testing and benchmarking e-health applications.
 
