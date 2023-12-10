@@ -1,0 +1,80 @@
+body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+main {
+  padding: 1em;
+  margin: auto;
+  width: 80em;
+}
+
+.darkside {
+  margin-top: 2em;
+  clear: both;
+  padding-left: 1em;
+  background-color: #282c34;
+  color: #ffffff;
+}
+
+.darkside h1 {
+  padding-top: 1em;
+  font-weight: bold;
+}
+
+.lines {
+  clear: both;
+  width: 100%;
+  padding: 2em;
+  margin-top: 2em;
+}
+
+.lines th {
+  border-bottom: 2px solid #888888;
+  text-align: left;
+}
+
+.lines th.amount, .lines th.quantity {
+  text-align: right;
+  width: 10em;
+  margin-left: 2em;
+} 
+
+.lines td {
+  border-bottom: 1px solid #CCCCCC;
+}
+
+.lines td.amount {
+  text-align: right;
+}
+
+.lines td.quantity {
+  text-align: right;
+}
+
+.lines tfoot td {
+  border: none;
+  text-align: right;
+}
+
+.lines tfoot tr.total {
+  font-size: 120%;
+  font-weight: bold;
+}
+
+.recipient {
+  float: left;
+  width: 50%;
+}
+
+.issuer {
+  float: right;
+  width: 50%;
+  text-align: right;
+}
+
+.headline {
+  font-size: 120%;
+  font-weight: bold;
+}

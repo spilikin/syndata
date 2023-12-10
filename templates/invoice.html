@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>Rechnung {{invoice.identifier[0].value}}</title>
+    <link rel="stylesheet" href="/static/invoice.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    
+    <!-- and it's easy to individually load additional languages -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/go.min.js"></script>
+    
+    <script>hljs.highlightAll();</script>    
+</head>
+
+<body>
+<main>
+  <h1>Rechnung</h1>
+  <h2>R-Nr. {{invoice.identifier[0].value}}</h2>
+
+  <div class="recipient">
+    <div class="headline">Empfänger</div>
+    <div class="display">{{invoice.recipient.display}}</div>
+    <div class="kvnr"><span class="label">KVNR</span> {{invoice.recipient.identifier.value}}</div>
+  </div>
+
+  <div class="issuer">
+    <div class="headline">Aussteller</div>
+    <div class="display">{{issuer.name}}</div>
+
+    <div class="kvnr"><span class="label">Telematik-ID</span> {{issuer.identifier[0].value}}</div>
+    <div>&nbsp;</div>
+    <a href="http://www.google.com/maps/place/{{issuer_location.position.longitude}},{{issuer_location.position.latitude}}">
+    <div>
+      {% for line in issuer_location.address.line %}
+      {{ line }}<br/>
+      {% endfor %}
+    </div>
+    <div>{{issuer_location.address.postalCode}} {{issuer_location.address.city}}</div>
+    </a>
+</div>
+  <table class="lines">
+    <thead>
+        <tr>
+            <th class="description">Beschreibung</th>
+            <th class="code">GOÄ</th>
+            <th class="quantity">Anzahl</th>
+            <th class="amount">Betrag</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for line in lines %}
+        <tr>
+            <td class="description">{{line.resource.code.text}}</td>
+            <td class="code">{{line.resource.code.coding[0].code}} </td>
+            <td class="quantity">1</td>
+            <td class="amount">{{line.resource.totalPriceComponent.amount.value}} {{line.resource.totalPriceComponent.amount.currency}}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3" class="description">Zwischensumme</td>
+        <td class="amount">{{invoice.totalNet.value}} {{invoice.totalNet.currency}}</td>
+      </tr>
+      <tr>
+        <td colspan="3" class="description">Mehrwertsteuer (19%)</td>
+        <td class="amount">{{invoice.totalPriceComponent[0].amount.value}} {{invoice.totalPriceComponent[0].amount.currency}}</td>
+      </tr>
+      <tr class="total">
+        <td colspan="3" class="description">Gesamt</td>
+        <td class="amount">{{invoice.totalGross.value}} {{invoice.totalGross.currency}}</td>
+      </tr>
+    </tfoot>
+  </table>
+</main>
+    
+<div class="darkside">
+  <h1>Die dunkle Seite der Technik</h1>
+
+  <pre><code class="json">{{bundle_json}}</code></pre>
+</div>
+</html>
